@@ -1,6 +1,6 @@
 
 # Change the url as needed (e.g. deployed url on Render)
-@API_URL=http://localhost:8080
+@API_URL=https://docker-api-ac5e.onrender.com
 
 ###
 # Test that the API is responding 
