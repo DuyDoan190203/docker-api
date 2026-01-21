@@ -1,17 +1,20 @@
-FROM python:3.10
+# Use official Python image (slim for small size)
+FROM python:3.11-slim
 
-WORKDIR /code
+# Set working directory
+WORKDIR /app
 
-COPY ./requirements.txt /code/requirements.txt
+# Copy requirements first for caching
+COPY /app/requirements.txt .
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+# Install dependencies
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-COPY ./app /code/app
+# Copy the rest of the code
+COPY . .
 
-# This can be overridden in .env if declared in docker-compose
-ENV MODE=production
+# Expose port
+EXPOSE 8080
 
-# Set MODE=development in .env when run locally to listen for changes
-CMD ["sh", "-c", "if [ \"$MODE\" = 'development' ]; then fastapi dev app/main.py --host 0.0.0.0 --port 8080 --reload; else fastapi run app/main.py --host 0.0.0.0 --port 8080; fi"]
-
-#CMD ["fastapi", "run", "app/main.py", "--host", "0.0.0.0", "--port", "8080"]
+# Run the app with Uvicorn
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]

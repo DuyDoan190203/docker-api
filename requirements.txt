@@ -1,2 +1,7 @@
 fastapi[standard]
 pydantic
+uvicorn
+scikit-learn
+pandas
+joblib
+numpy

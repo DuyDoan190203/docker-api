@@ -22,3 +22,9 @@ Rename `.env-example` to `.env` to override the `MODE=production`set in the `Doc
 
 To run the container locally:
 `docker-compose up --build`
+
+
+Add Wine Predicion Demo API:
+Uses a pre trained model for predicting wine quality based on parameters
+Test locally with docker compose up --build
+Install the Rest-Client extension to VSCode to test the API with the provided test.http file

@@ -1,14 +1,13 @@
-version: '3.8'
+version: "3.9"
 
 services:
-  fastapi-app:
-    build:
-      context: .
-    volumes:
-      # Mount the local app directory to the /code/app directory in the container    
-      - ./app:/code/app
+  wine-api:
+    build: .
+    container_name: wine_api
     ports:
       - "8080:8080"
+    volumes:
+      - .:/app   # Mount local directory for live code changes
     environment:
       - PYTHONUNBUFFERED=1
-      - MODE
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
