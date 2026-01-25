@@ -6,3 +6,4 @@ pandas
 joblib
 numpy
 python-dotenv
+python-jose[cryptography]
